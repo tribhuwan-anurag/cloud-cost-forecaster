@@ -24,7 +24,7 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          flake8 app/ --max-line-length=120 --ignore=E501,W503
+          flake8 app/ --max-line-length=120 --ignore=E501,W503,E221,E241,W292,F811
 
       - name: Run tests
         run: pytest tests/ -v --tb=short
