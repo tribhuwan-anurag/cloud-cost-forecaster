@@ -1,0 +1,28 @@
+# AWS
+boto3
+
+# Data
+pandas
+numpy
+
+# Forecasting
+prophet
+statsmodels
+
+# Visualization
+matplotlib
+plotly
+
+# Reporting
+jinja2
+
+# Utilities
+python-dotenv
+requests
+
+# Testing
+pytest
+pytest-cov
+
+# Linting
+flake8

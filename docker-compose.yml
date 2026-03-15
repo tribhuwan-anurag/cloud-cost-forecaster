@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  forecaster:
+    build: .
+    container_name: cloud-cost-forecaster
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - ALERT_EMAIL=${ALERT_EMAIL}
+    volumes:
+      # Mount local data/ folder so the report is accessible after container exits
+      - ./data:/app/data
