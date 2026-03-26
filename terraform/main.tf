@@ -138,3 +138,15 @@ resource "aws_sns_topic_subscription" "email" {
   protocol  = "email"
   endpoint  = var.alert_email
 }
+
+resource "aws_cloudwatch_metric_alarm" "cost_anomaly" {
+  alarm_name          = "daily-cost-anomaly"
+  metric_name         = "EstimatedCharges"
+  namespace           = "AWS/Billing"
+  statistic           = "Maximum"
+  period              = 86400
+  evaluation_periods  = 1
+  threshold           = var.cost_threshold
+  comparison_operator = "GreaterThanThreshold"
+  alarm_actions       = [aws_sns_topic.alerts.arn]
+}

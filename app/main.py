@@ -2,6 +2,8 @@ import os
 import sys
 from datetime import datetime
 from dotenv import load_dotenv
+from ingest import get_cost_data, get_total_daily_cost, save_raw_data, load_raw_data, create_cost_alarm
+
 
 load_dotenv()
 
@@ -35,6 +37,7 @@ def run_pipeline(use_cache: bool = False):
     chart_path   = os.path.join(data_dir, "forecast_chart.png")
     report_path  = os.path.join(data_dir, "report.html")
 
+
     os.makedirs(data_dir, exist_ok=True)
 
     # Step 1 — Ingest
@@ -45,6 +48,8 @@ def run_pipeline(use_cache: bool = False):
     else:
         df = get_cost_data(days_back=90)
         save_raw_data(df, cache_path)
+
+    create_cost_alarm(threshold=1.0)
 
     daily = get_total_daily_cost(df)
 
@@ -85,6 +90,7 @@ def run_pipeline(use_cache: bool = False):
     print("=" * 50)
 
     return report_path
+
 
 
 if __name__ == "__main__":

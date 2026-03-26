@@ -19,3 +19,9 @@ variable "aws_account_id" {
   description = "AWS account ID"
   type        = string
 }
+
+variable "cost_threshold" {
+  description = "Daily cost threshold in USD to trigger CloudWatch alarm"
+  type        = number
+  default     = 1.0
+}

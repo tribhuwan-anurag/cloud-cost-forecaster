@@ -101,3 +101,21 @@ if __name__ == "__main__":
     daily = get_total_daily_cost(df)
     print("\n--- Daily totals (first 5 rows) ---")
     print(daily.head().to_string())
+
+def create_cost_alarm(threshold: float = 1.0):
+    """Create a CloudWatch alarm that triggers SNS when daily cost exceeds threshold."""
+    cloudwatch = boto3.client('cloudwatch', region_name='us-east-1')
+
+    cloudwatch.put_metric_alarm(
+        AlarmName='DailyCostAnomaly',
+        MetricName='EstimatedCharges',
+        Namespace='AWS/Billing',
+        Statistic='Maximum',
+        Period=86400,
+        EvaluationPeriods=1,
+        Threshold=threshold,
+        ComparisonOperator='GreaterThanThreshold',
+        AlarmActions=[os.getenv('SNS_TOPIC_ARN')],
+        Dimensions=[{'Name': 'Currency', 'Value': 'USD'}]
+    )
+    print(f"CloudWatch alarm set — triggers SNS if daily cost exceeds ${threshold}")
