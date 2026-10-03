@@ -41,7 +41,7 @@ cloud-cost-forecaster/
 ## Running locally
 ```bash
 # Clone and set up
-git clone https://github.com/YOUR_USERNAME/cloud-cost-forecaster
+git clone https://github.com/tribhuwan-anurag/cloud-cost-forecaster
 cd cloud-cost-forecaster
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
