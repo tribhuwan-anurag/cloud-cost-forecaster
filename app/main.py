@@ -37,7 +37,6 @@ def run_pipeline(use_cache: bool = False):
     chart_path   = os.path.join(data_dir, "forecast_chart.png")
     report_path  = os.path.join(data_dir, "report.html")
 
-
     os.makedirs(data_dir, exist_ok=True)
 
     # Step 1 — Ingest
