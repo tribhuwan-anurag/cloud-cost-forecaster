@@ -1,3 +1,7 @@
+# Generated output
+data/
+*.html
+
 # Python
 __pycache__/
 *.pyc
